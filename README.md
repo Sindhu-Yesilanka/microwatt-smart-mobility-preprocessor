@@ -4,14 +4,10 @@
 **Microwatt-SMP: Smart Mobility Pre-Processor for the Microwatt OpenPOWER Core (SKY130)**
 
 ## Abstract
-This project extends the Microwatt POWER core with a Smart Mobility Pre-Processor (SMP) accelerator designed for real-time sensor workloads. Connected through the Wishbone bus, the accelerator performs noise filtering, sensor fusion, and anomaly detection on GPS, IMU, and speed data. It produces compact mobility frames that reduce CPU workload and latency.
-
-Implemented in RTL and verified with testbenches, the design will be synthesized on SKY130 using the OpenLane flow. All design files and configurations are open-sourced to ensure reproducibility. The aim is to demonstrate a practical, domain-specific hardware extension of Microwatt that improves efficiency and safety in smart city and intelligent transport applications.
+This project extends the Microwatt POWER core with a Smart Mobility Pre-Processor (SMP) accelerator designed for real-time sensor workloads. Connected through the Wishbone bus, the accelerator performs noise filtering, sensor fusion, and anomaly detection on GPS, IMU, and speed data. It produces compact mobility frames that reduce CPU workload and latency.Implemented in RTL and verified with testbenches, the design will be synthesized on SKY130 using the OpenLane flow. All design files and configurations are open-sourced to ensure reproducibility. The aim is to demonstrate a practical, domain-specific hardware extension of Microwatt that improves efficiency and safety in smart city and intelligent transport applications.
 
 ## Motivation
-Microwatt provides a clean, functional implementation of the POWER ISA, but its current SoC design processes sensor workloads entirely in software, causing inefficiencies in latency, power consumption, and bandwidth.  
-
-Edge computing systems, particularly in mobility and transport, require domain-specific accelerators that preprocess data closer to the source. The Smart Mobility Pre-Processor fills this gap by offloading filtering and fusion tasks to dedicated hardware, reducing CPU overhead while maintaining ISA compliance and integration simplicity.
+Microwatt provides a clean, functional implementation of the POWER ISA, but its current SoC design processes sensor workloads entirely in software, causing inefficiencies in latency, power consumption, and bandwidth. Edge computing systems, particularly in mobility and transport, require domain-specific accelerators that preprocess data closer to the source. The Smart Mobility Pre-Processor fills this gap by offloading filtering and fusion tasks to dedicated hardware, reducing CPU overhead while maintaining ISA compliance and integration simplicity.
 
 ## Design Features
 - **Filtering:** FIR and moving average noise suppression.
