@@ -1,3 +1,48 @@
+# Proposal
+
+## Project Title
+**Microwatt-SMP: Smart Mobility Pre-Processor for the Microwatt OpenPOWER Core (SKY130)**
+
+## Abstract
+This project extends the Microwatt POWER core with a Smart Mobility Pre-Processor (SMP) accelerator designed for real-time sensor workloads. Connected through the Wishbone bus, the accelerator performs noise filtering, sensor fusion, and anomaly detection on GPS, IMU, and speed data. It produces compact mobility frames that reduce CPU workload and latency.
+
+Implemented in RTL and verified with testbenches, the design will be synthesized on SKY130 using the OpenLane flow. All design files and configurations are open-sourced to ensure reproducibility. The aim is to demonstrate a practical, domain-specific hardware extension of Microwatt that improves efficiency and safety in smart city and intelligent transport applications.
+
+## Motivation
+Microwatt provides a clean, functional implementation of the POWER ISA, but its current SoC design processes sensor workloads entirely in software, causing inefficiencies in latency, power consumption, and bandwidth.  
+
+Edge computing systems, particularly in mobility and transport, require domain-specific accelerators that preprocess data closer to the source. The Smart Mobility Pre-Processor fills this gap by offloading filtering and fusion tasks to dedicated hardware, reducing CPU overhead while maintaining ISA compliance and integration simplicity.
+
+## Design Features
+- **Filtering:** FIR and moving average noise suppression.
+- **Sensor Fusion:** Combines GPS, IMU, and speed data into unified mobility states.
+- **Decision Logic:** Detects unsafe speed changes and lane deviations.
+- **Dual Modes:** 
+  - Eco (filter-only)
+  - Safety (fusion + anomaly detection)
+- **Wishbone Interface:** Memory-mapped registers for Microwatt CPU control.
+- **SKY130 Standard Cell Implementation:** OpenLane reproducible flow.
+
+## Integration
+- Implemented as a Wishbone peripheral in the Microwatt SoC.
+- Controlled via C firmware compiled with GCC for POWER.
+- ISA preserved; only memory-mapped register interface added.
+- Verified through CPU + accelerator co-simulation.
+
+## Deliverables
+- RTL modules: `smp_top.v`, `fusion_logic.v`, `filter_core.v`, `wb_wrapper.v`.
+- Unit and system testbenches with Python golden models (NumPy).
+- Example firmware demonstrating UART log output of mobility states.
+- OpenLane SKY130 configs, synthesis, and STA results.
+- Documentation, diagrams, and reproducibility scripts.
+- Demo video and screenshots for final submission.
+
+## Impact
+- **Practical:** Improves safety and efficiency for smart mobility and IoT edge workloads.
+- **Community Value:** Provides a reusable accelerator block for OpenPOWER projects.
+- **Innovation:** Demonstrates domain-driven heterogeneous computing.
+- **Reproducibility:** Fully open-source and compliant with ChipFoundry challenge rules.
+
 # OpenFrame Overview
 
 The OpenFrame Project provides an empty harness chip that differs significantly from the Caravel and Caravan designs. Unlike Caravel and Caravan, which include integrated SoCs and additional features, OpenFrame offers only the essential padframe, providing users with a clean slate for their custom designs.
